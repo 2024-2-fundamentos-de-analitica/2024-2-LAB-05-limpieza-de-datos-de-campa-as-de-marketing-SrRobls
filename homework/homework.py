@@ -71,11 +71,11 @@ def clean_campaign_data():
 
     dataset['job'] = dataset['job'].str.replace('.', '').str.replace('-', '_')
     dataset['education'] = dataset['education'].str.replace('.', '_')
-    dataset['education'] = dataset['education'].apply(lambda x: pd.NA if x == 'unknown' else x)
-    dataset['credit_default'] = dataset['credit_default'].apply(lambda x: 1 if x == 'yes' else 0)
-    dataset['mortgage'] = dataset['mortgage'].apply(lambda x: 1 if x == 'yes' else 0)
-    dataset['previous_outcome'] = dataset['previous_outcome'].apply(lambda x: 1 if x == 'success' else 0)
-    dataset['campaign_outcome'] = dataset['campaign_outcome'].apply(lambda x: 1 if x == 'yes' else 0)
+    dataset['education'] = dataset['education'].map(lambda x: pd.NA if x == 'unknown' else x)
+    dataset['credit_default'] = dataset['credit_default'].map(lambda x: 1 if x == 'yes' else 0)
+    dataset['mortgage'] = dataset['mortgage'].map(lambda x: 1 if x == 'yes' else 0)
+    dataset['previous_outcome'] = dataset['previous_outcome'].map(lambda x: 1 if x == 'success' else 0)
+    dataset['campaign_outcome'] = dataset['campaign_outcome'].map(lambda x: 1 if x == 'yes' else 0)
 
 
     dataset['month'] = pd.to_datetime(dataset['month'], format='%b').dt.month
